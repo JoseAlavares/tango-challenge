@@ -127,6 +127,7 @@ app.post('/report', (req, resp) => {
                     const result = await report.save()
 
                     if(result) {
+                        fs.unlinkSync(filePath)
                         return responseNetwork(
                             resp,
                             false,
@@ -145,6 +146,7 @@ app.post('/report', (req, resp) => {
             });            
         })
     } catch(err) {
+        fs.unlinkSync(filePath)
         console.error(err.message)
         return responseNetwork(
             resp,
@@ -153,8 +155,6 @@ app.post('/report', (req, resp) => {
             'Error in the server'
         )
 
-    } finally {
-        fs.unlinkSync(filePath)
     }    
 })
 
