@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  # mongo:
+  #   image: mongo:4.1.8-xenial
+  #   container_name: mern-project-db
+  #   environment:
+  #   #- MONGO_INITDB_ROOT_USERNAME=admin
+  #   #- MONGO_INITDB_ROOT_PASSWORD=admin
+  #   - MONGO_INITDB_DATABASE=mern-project-db
+  #   networks:
+  #   - mern-project
+  #   ports:
+  #   - "27017:27017"
+
+  backend-tango-challenge:
+    image: jalvarez/backend-tango-challenge:local
+    container_name: backend-tango-challenge
+    restart: unless-stopped
+    environment:
+    - CONTAINER_PATH=/home/node/app/tmp
+    build: 
+      context: ./
+      dockerfile: ./Dockerfile.local
+    ports:
+    - "3334:3000"
+    volumes: 
+    - ./src:/home/node/app/src
+    networks:
+    - backend-tango-backend
+
+networks:
+  backend-tango-backend:
+    driver: bridge
