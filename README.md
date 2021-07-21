@@ -30,7 +30,7 @@ docker-compose up -f Dockerfile.local -d --build
 ```
 ### License
 
-Copyright (C) 2020, Ulfix  
+Copyright (C) 2020, Cubix  
  All rights reserved.
 ----
 
